@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String newUser(User user, Integer[] roleIds, RedirectAttributes redirectAttributes) {
         Integer newAccount = userService.saveNewUser(user, roleIds);
-        redirectAttributes.addFlashAttribute("message", "新建账户成功,帐户名" + newAccount);
+        redirectAttributes.addFlashAttribute("message", "新建账户成功！帐户名：" + newAccount);
         return "redirect:/user";
     }
 

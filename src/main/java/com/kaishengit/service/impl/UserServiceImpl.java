@@ -53,12 +53,23 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 给密码加盐
+     *
+     * @param user 需要加盐的User对象
+     */
+    private void addSalt(User user) {
+        if (user.getPassword() != null) {
+            user.setPassword(DigestUtils.md5Hex(user.getPassword() + salt));
+        }
+    }
+
     @Override
     @Transactional
     public Integer saveNewUser(User user, Integer[] roleIds) {
         Integer newAccount = userMapper.findMaxAccount() + 1;
         user.setUserAccount(newAccount);
-        user.setPassword(DigestUtils.md5Hex(user.getPassword() + salt));
+        addSalt(user);
         userMapper.save(user);
         addUserRole(user, roleIds);
         //TODO 概率性的账号重复，待添加检测,邮箱，电话唯一性未添加。
@@ -82,9 +93,7 @@ public class UserServiceImpl implements UserService {
     public void editUser(User user, Integer[] roleIds) {
         roleMapper.delUserRoleByUserId(user.getId());
         addUserRole(user, roleIds);
-        if (user.getPassword() != null) {
-            user.setPassword(DigestUtils.md5Hex(user.getPassword() + salt));
-        }
+        addSalt(user);
         userMapper.update(user);
     }
 }

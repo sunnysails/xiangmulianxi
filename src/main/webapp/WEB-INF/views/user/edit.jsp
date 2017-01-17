@@ -90,6 +90,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <%@include file="../include/footer.jsp" %>
 </div>
 <%@include file="../include/js.jsp"%>
 </body>

@@ -13,8 +13,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> 新增账户</a></li>
-                    <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> 账户列表</a></li>
+                    <li><a href="/user/new"><i class="fa fa-circle-o"></i> 新增账户</a></li>
+                    <li><a href="/user"><i class="fa fa-circle-o"></i> 账户列表</a></li>
                 </ul>
             </li>
 
@@ -48,10 +48,8 @@
 
                     <li><a href="#"><i class="fa fa-circle-o"></i> 设备管理<i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> 设备库存</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-plus"></i> 新增设备 </a>
-                            </li>
+                            <li><a href="/business/device"><i class="fa fa-circle-o"></i> 设备库存</a></li>
+                            <li><a href="/business/device/new"><i class="fa fa-plus"></i> 新增设备 </a></li>
                         </ul>
                     </li>
 

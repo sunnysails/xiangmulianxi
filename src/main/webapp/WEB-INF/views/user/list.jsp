@@ -35,7 +35,7 @@
                         </div>
                     </c:if>
                     <table class="table">
-                        <thead>
+                        <thead align="center">
                         <tr>
                             <th>姓名</th>
                             <th>帐号</th>
@@ -43,10 +43,10 @@
                             <th>email</th>
                             <th>电话</th>
                             <th>状态</th>
-                            <th width="100">#</th>
+                            <th width="80">#</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody align="center">
                         <c:forEach items="${userList}" var="user">
                             <tr>
                                 <td>${user.userName}</td>
@@ -76,6 +76,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <%@include file="../include/footer.jsp" %>
 </div>
 <%@include file="../include/js.jsp" %>
 </body>

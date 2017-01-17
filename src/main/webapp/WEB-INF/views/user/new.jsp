@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
-    <%@include file="../include/css.jsp"%>
+    <%@include file="../include/css.jsp" %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-    <%@include file="../include/header.jsp"%>
-    <%@include file="../include/sider.jsp"%>
+    <%@include file="../include/header.jsp" %>
+    <%@include file="../include/sider.jsp" %>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -34,7 +34,8 @@
                         </div>
                         <div class="form-group">
                             <label>帐号</label>
-                            <input disabled="disabled" type="text" name="userAccount" class="form-control" value="添加完成后系统自动生成">
+                            <input disabled="disabled" type="text" name="userAccount" class="form-control"
+                                   value="添加完成后系统自动生成">
                         </div>
                         <div class="form-group">
                             <label>密码(默认000000)</label>
@@ -68,7 +69,8 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <%@include file="../include/footer.jsp" %>
 </div>
-<%@include file="../include/js.jsp"%>
+<%@include file="../include/js.jsp" %>
 </body>
 </html>
