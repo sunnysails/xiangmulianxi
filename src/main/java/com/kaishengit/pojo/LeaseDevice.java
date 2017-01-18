@@ -18,7 +18,10 @@ public class LeaseDevice implements Serializable {
     private Integer isRenewal;
     private Integer leaseNum;
     private Integer returnNum;
+    private Float createPrice;
     private Float amount;
     private Float amountOfDefault;
     private Float paidAmount;
+
+    private Device device;
 }

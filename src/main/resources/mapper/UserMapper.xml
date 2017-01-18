@@ -47,6 +47,7 @@
           LEFT JOIN t_user_role tur ON tu.id = tur.user_id
           LEFT JOIN t_role tr ON tur.role_id = tr.id
     </sql>
+
     <resultMap id="UserMap" type="User">
         <id column="id" property="id"/>
         <result column="user_account" property="userAccount"/>

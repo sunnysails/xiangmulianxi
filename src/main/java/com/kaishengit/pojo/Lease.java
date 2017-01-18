@@ -3,6 +3,7 @@ package com.kaishengit.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public class Lease implements Serializable {
     private Integer id;
     private Integer leaseAccount;
     private String leaseAddress;
+    private String leaseCompany;
     private String leaseCompanyPhone;
     private String leaseLegal;
     private String leaseLegalPhone;
@@ -21,6 +23,8 @@ public class Lease implements Serializable {
     private Float leasePrepaid;
     private Float leaseUnpaid;
     private Float leaseOfDefault;
+    private Integer leaseState;
+    private Timestamp leaseCreateTime;
 
     private List<LeaseDevice> leaseDeviceList;
 }

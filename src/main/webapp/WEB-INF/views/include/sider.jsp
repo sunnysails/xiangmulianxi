@@ -39,9 +39,9 @@
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> 设备租赁<i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> 业务流水</a></li>
+                            <li><a href="/business/lease"><i class="fa fa-circle-o"></i> 业务流水</a></li>
                             <li>
-                                <a href="#"><i class="fa fa-plus"></i> 新增流水 </a>
+                                <a href="/business/lease/new"><i class="fa fa-plus"></i> 新增流水 </a>
                             </li>
                         </ul>
                     </li>

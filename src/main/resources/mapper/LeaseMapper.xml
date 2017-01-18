@@ -1,4 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kaishengit.mapper.LeaseMapper">
+
+    <select id="findAll" resultMap="LeaseMap">
+        SELECT
+          tl.*,
+          tld.*,
+          td.device_all_num,
+          td.device_name,
+          td.device_now_num,
+          td.device_unit,
+          td.update_time
+        FROM t_lease tl
+          LEFT JOIN t_lease_device tld ON tl.id = tld.lease_id
+          LEFT JOIN t_device td ON tld.device_id = td.id;
+    </select>
+
+    <select id="findById" resultMap="LeaseMap">
+        SELECT
+          tl.*,
+          tld.*,
+          td.device_all_num,
+          td.device_name,
+          td.device_now_num,
+          td.device_unit,
+          td.update_time
+        FROM t_lease tl
+          LEFT JOIN t_lease_device tld ON tl.id = tld.lease_id
+          LEFT JOIN t_device td ON tld.device_id = td.id
+        WHERE tl.id = #{leaseId};
+    </select>
+
+    <resultMap id="LeaseMap" type="Lease">
+        <id column="id" property="id"/>
+        <result column="lease_account" property="leaseAccount"/>
+        <result column="lease_company" property="leaseCompany"/>
+        <result column="lease_address" property="leaseAddress"/>
+        <result column="lease_company_phone" property="leaseCompanyPhone"/>
+        <result column="lease_legal" property="leaseLegal"/>
+        <result column="lease_legal_phone" property="leaseLegalPhone"/>
+        <result column="lease_legal_id_card" property="leaseLegalIdCard"/>
+        <result column="lease_amount" property="leaseAmount"/>
+        <result column="lease_prepaid" property="leasePrepaid"/>
+        <result column="lease_unpaid" property="leaseUnpaid"/>
+        <result column="lease_of_default" property="leaseOfDefault"/>
+        <result column="lease_state" property="leaseState"/>
+        <result column="lease_create_time" property="leaseCreateTime"/>
+        <collection property="leaseDeviceList" resultMap="LeaseDeviceMap"/>
+    </resultMap>
+
+    <resultMap id="LeaseDeviceMap" type="LeaseDevice">
+        <result column="device_id" property="deviceId"/>
+        <result column="lease_id" property="leaseId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="return_time" property="returnTime"/>
+        <result column="actual_return_time" property="actualReturnTime"/>
+        <result column="is_renewal" property="isRenewal"/>
+        <result column="lease_num" property="leaseNum"/>
+        <result column="return_num" property="returnNum"/>
+        <result column="create_price" property="createPrice"/>
+        <result column="amount" property="amount"/>
+        <result column="amount_of_default" property="amountOfDefault"/>
+        <result column="paid_amount" property="paidAmount"/>
+        <collection property="device" ofType="Device">
+            <id column="device_id" property="id"/>
+            <result column="device_account" property="deviceAccount"/>
+            <result column="device_name" property="deviceName"/>
+            <result column="device_all_num" property="deviceAllNum"/>
+            <result column="device_now_num" property="deviceNowNum"/>
+            <result column="device_unit" property="deviceUnit"/>
+            <result column="device_unit_price" property="deviceUnitPrice"/>
+            <result column="update_time" property="updateTime"/>
+        </collection>
+    </resultMap>
+
+
+
+    <!--<resultMap id="LeaseMap" type="Lease">-->
+        <!--<id column="id" property="id"/>-->
+        <!--<result column="lease_account" property="leaseAccount"/>-->
+        <!--<result column="lease_company" property="leaseCompany"/>-->
+        <!--<result column="lease_address" property="leaseAddress"/>-->
+        <!--<result column="lease_company_phone" property="leaseCompanyPhone"/>-->
+        <!--<result column="lease_legal" property="leaseLegal"/>-->
+        <!--<result column="lease_legal_phone" property="leaseLegalPhone"/>-->
+        <!--<result column="lease_legal_id_card" property="leaseLegalIdCard"/>-->
+        <!--<result column="lease_amount" property="leaseAmount"/>-->
+        <!--<result column="lease_prepaid" property="leasePrepaid"/>-->
+        <!--<result column="lease_unpaid" property="leaseUnpaid"/>-->
+        <!--<result column="lease_of_default" property="leaseOfDefault"/>-->
+        <!--<result column="lease_state" property="leaseState"/>-->
+        <!--<result column="create_time" property="leaseCreateTime"/>-->
+    <!--</resultMap>-->
 </mapper>
