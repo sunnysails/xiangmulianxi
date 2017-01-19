@@ -18,8 +18,6 @@
     <%@ include file="../../include/css.jsp" %>
 
     <link rel="stylesheet" href="/static/css/bootstrap-table-expandable.css">
-
-
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -146,7 +144,7 @@
                                                         <div class="box-body" style="font-size: medium">
                                                             <ul>
                                                                 <li><span>租赁起始时间：</span>${leaseDevice.createTime}</li>
-                                                                <li><span>租赁结束时间：</span>${leaseDevice.returnTime}</li>
+                                                                <li><span>租赁结束时间：</span>${leaseDevice.backTime}</li>
                                                                 <li><span>租赁单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.leaseNum}</li>
                                                                 <li><span>归还单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.returnNum}</li>
                                                                 <li><span>租赁确定单价（元）：</span>${leaseDevice.createPrice}</li>

@@ -3,6 +3,7 @@ package com.kaishengit.service;
 import com.kaishengit.pojo.Lease;
 import com.kaishengit.pojo.LeaseDevice;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -12,4 +13,6 @@ public interface LeaseService {
     List<Lease> findAllLease();
 
     Lease findLeaseById(Integer leaseId);
+
+    void saveNewLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums);
 }

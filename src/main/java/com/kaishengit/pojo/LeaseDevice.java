@@ -13,7 +13,7 @@ public class LeaseDevice implements Serializable {
     private Integer deviceId;
     private Integer leaseId;
     private Timestamp createTime;
-    private Timestamp returnTime;
+    private Timestamp backTime;
     private Timestamp actualReturnTime;
     private Integer isRenewal;
     private Integer leaseNum;

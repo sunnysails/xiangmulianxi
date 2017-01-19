@@ -13,4 +13,8 @@ public interface LeaseMapper {
     List<Lease> findAll();
 
     Lease findById(Integer leaseId);
+
+    void saveNew(Lease lease);
+
+    int findMaxAccount();
 }

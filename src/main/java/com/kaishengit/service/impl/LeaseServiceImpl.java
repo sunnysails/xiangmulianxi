@@ -1,12 +1,18 @@
 package com.kaishengit.service.impl;
 
+import com.kaishengit.mapper.DeviceMapper;
+import com.kaishengit.mapper.LeaseDeviceMapper;
 import com.kaishengit.mapper.LeaseMapper;
+import com.kaishengit.pojo.Device;
 import com.kaishengit.pojo.Lease;
 import com.kaishengit.pojo.LeaseDevice;
 import com.kaishengit.service.LeaseService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -16,6 +22,19 @@ import java.util.List;
 public class LeaseServiceImpl implements LeaseService {
     @Autowired
     private LeaseMapper leaseMapper;
+    @Autowired
+    private LeaseDeviceMapper leaseDeviceMapper;
+    @Autowired
+    private DeviceMapper deviceMapper;
+
+    /**
+     * 获取当前时间到天
+     *
+     * @return YYYY-MM-DD
+     */
+    private Timestamp getNowDay() {
+        return new Timestamp(new DateTime().getDayOfYear());
+    }
 
     @Override
     public List<Lease> findAllLease() {
@@ -25,5 +44,35 @@ public class LeaseServiceImpl implements LeaseService {
     @Override
     public Lease findLeaseById(Integer leaseId) {
         return leaseMapper.findById(leaseId);
+    }
+
+    @Override
+    @Transactional
+    public void saveNewLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums) {
+        Integer newAccount = leaseMapper.findMaxAccount() + 1;
+        lease.setLeaseAccount(newAccount);
+        Float a = Float.valueOf("4.4");
+        leaseMapper.saveNew(lease);
+
+        LeaseDevice leaseDevice = new LeaseDevice();
+        Device device = new Device();
+
+        leaseDevice.setLeaseId(lease.getId());
+        for (int i = 0; i < deviceIds.length; i++) {
+            //获取device对象
+            device = deviceMapper.findById(deviceIds[i]);
+            //存储leaseDevice对象
+            leaseDevice.setDeviceId(deviceIds[i]);
+            leaseDevice.setBackTime(backs[i]);
+//TODO 因spring获取时间问题，该功能暂有BUG存在。不能实用 ，后期修复！！！！
+//            leaseDevice.setBackTime(new Timestamp(new DateTime().getMillis()));
+            leaseDevice.setLeaseNum(leaseNums[i]);
+            leaseDevice.setCreatePrice(device.getDeviceUnitPrice());
+//            leaseDevice.setAmount(device.getDeviceUnitPrice()*leaseNums[i]*(backs[i]-getNowDay()));
+            leaseDeviceMapper.saveNewLeDe(leaseDevice);
+//更新device 数量
+            device.setDeviceNowNum(device.getDeviceNowNum() - leaseNums[i]);
+            deviceMapper.update(device);
+        }
     }
 }

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +27,11 @@
 
     <%@include file="../../include/header.jsp" %>
     <%@include file="../../include/sider.jsp" %>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-
                 <small></small>
             </h1>
             <ol class="breadcrumb">
@@ -44,194 +43,162 @@
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
-            <div class="box">
+            <div class="box box-solid box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">新增租赁流水</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
-                                title="Remove">
-                            <i class="fa fa-times"></i></button>
-                    </div>
                 </div>
                 <div class="box-body">
-                    <div class="box">
-                        <div class="box-body">
-                            <form role="form">
-                                <div class="box-body" class="form-group">
-                                    <!--设备 -->
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="device_name">设备名称：&nbsp</label>
-                                                <select name="" id="" style="height:25px;width:160px">
-                                                    <option value="">挖掘机</option>
-                                                    <option value="">塔吊</option>
-                                                    <option value="">货车</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="unit">单 &nbsp;&nbsp位：&nbsp</label>
-                                                <input type="text" class="" name="unit" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="daynumber">租赁单价：&nbsp</label>
-                                                <input type="text" disabled="disabled" class="" id="daynumber"
-                                                       value="10.00">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </br>
-                                    <div class="row">
+                    <form role="form" action="" onkeydown="if(event.keyCode==13){return false;}" method="post">
+                        <%--公司 Lease--%>
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">新租赁公司信息</h3>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>租赁公司：&nbsp;</label>
+                                    <input type="text" name="leaseCompany" id="lease_company">
+                                </div>
 
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">归还时间：&nbsp</label>
-                                                <input type="text" id="datepicker">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="number">数 &nbsp;&nbsp量：&nbsp</label>
-                                                <input type="text" class="" name="number" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="daynumber">天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp数：&nbsp</label>
-                                                <input type="text" disabled="disabled" class="" id="daynumber"
-                                                       placeholder="根据归还时间自动生成">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group col-md-4">
+                                    <label>地 &nbsp;&nbsp;址：&nbsp;</label>
+                                    <input type="text" name="leaseAddress" id="lease_address">
+                                </div>
 
-                                    <!--公司 -->
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="">
-                                                <label for="company">租赁公司：&nbsp</label>
-                                                <input type="text" class="" id="daynumber" placeholder="">
+                                <div class="form-group col-md-4">
+                                    <label>公司电话：&nbsp;</label>
+                                    <input type="text" name="leaseCompanyPhone" id="lease_company_phone">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>法人代表：&nbsp;</label>
+                                    <input type="text" name="leaseLegal" id="lease_legal">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>电 &nbsp;&nbsp;话：&nbsp;</label>
+                                    <input type="text" name="leaseLegalPhone" id="lease_legal_phone">
+                                </div>
 
-                                            </div>
-                                        </div>
+                                <div class="form-group col-md-4">
+                                    <label>身份证号：&nbsp;</label>
+                                    <input type="text" name="leaseLegalIdCard" id="lease_legal_id_card">
+                                </div>
+                            </div>
+                            <!--金额 -->
+                            <div class="row">
 
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="representative">地 &nbsp;&nbsp址：&nbsp</label>
-                                                <input type="text" class="" name="representative" placeholder="">
-                                            </div>
-                                        </div>
+                                <div class="form-group col-md-4">
+                                    <label>租金金额：</label>
+                                    <input type="text" disabled="disabled" name="leaseAmount" id="lease_amount"
+                                           value="10000.00">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>预付款：&nbsp;</label>
+                                    <input type="text" disabled="disabled" name="leasePrepaid" id="lease_prepaid"
+                                           placeholder="" value="2000.00">
+                                </div>
 
+                                <div class="form-group col-md-4">
+                                    <label>尾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;款：&nbsp;</label>
+                                    <input type="text" disabled="disabled" name="leaseUnpaid"
+                                           id="lease_unpaid" value="8000.00">
+                                </div>
+                            </div>
+                        </div>
+                        <%--公司结束--%>
 
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="telephone">公司电话：&nbsp</label>
-                                                <input type="text" class="" name="telephone" placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="">
-                                                <label for="company">法人代表：&nbsp</label>
-                                                <input type="text" class="" id="daynumber" placeholder="">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="telephone">电 &nbsp;&nbsp话：&nbsp</label>
-                                                <input type="text" class="" name="telephone" placeholder="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="idNum">身份证号：&nbsp</label>
-                                                <input type="text" class="" id="idNum" placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--金额 -->
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="">
-                                                <label for="sumMoney">租金金额：&nbsp</label>
-                                                <input type="text" disabled="disabled" class="" id="sumMoney"
-                                                       placeholder="" value="10000.00">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="firstMoney">预付款：&nbsp</label>
-                                                <input type="text" class="" disabled="disabled" name="firstMoney"
-                                                       placeholder="" value="2000.00">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div>
-                                                <label for="lastMoney">尾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;款：&nbsp</label>
-                                                <input type="text" class="" disabled="disabled" name="lastMoney"
-                                                       placeholder="" value="8000.00">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div><br/></div>
-                                    <div class="box" style="padding-left: 20px">
-                                        <div class="box-header">
-                                            <span class="title"><i class="fa fa-user"></i> 合同上传</span>
-                                        </div>
-                                        <form action="" class="form-horizontal">
-                                            <hr>
-                                            <p style="padding-left: 20px">注意事项</p>
-                                            <ul>
-                                                <li>上传合同扫描件要求清晰可见</li>
-                                                <li>合同必须公司法人签字盖章</li>
-                                            </ul>
-                                            <div class="form-actions">
-                                                <div id="picker">上传合同</div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3"></div>
-                                        <div class="col-lg-3">
-                                            <div class="box-footer">
-                                                <button type="submit" class="btn btn-primary">提交</button>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button type="submit" class="btn btn-primary">重置</button>
-                                            </div>
-                                        </div>
+                        <%--新设备--%>
+                        <div id="add">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">新租赁设备</h3>
+                                    <div class="box-tools pull-right">
+                                        <a href="javascript:;" id="addDevice" class="btn"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
-                            </form>
+
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label>设备名称：&nbsp;</label>
+                                        <select name="deviceIds" style="height:29px;width:174px">
+                                            <c:forEach items="${deviceList}" var="device">
+                                                <option value="${device.id}">${device.deviceName}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>单 &nbsp;&nbsp;位：&nbsp;</label>
+                                        <input type="text" name="deviceUnit">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>租赁单价：&nbsp;</label>
+                                        <input type="text" disabled="disabled" name="deviceUnitPrice" value="10.00">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <%--<div class="form-group col-md-4">--%>
+                                        <%--<label>归还时间：&nbsp;</label>--%>
+                                        <%--<input id="back" type="datetime" name="backs">--%>
+                                    <%--</div>--%>
+
+                                    <div class="form-group col-md-4">
+                                        <label>数&nbsp;&nbsp;量：&nbsp;</label>
+                                        <input type="text" name="leaseNums">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：&nbsp;</label>
+                                        <input type="text" disabled="disabled" placeholder="根据归还时间自动生成">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+                        <%--设备结束--%>
+                        <div>
+                            <br/>
+                        </div>
+                        <div class="box" style="padding-left: 20px">
+                            <div class="box-header">
+                                <span class="title"><i class="fa fa-user"></i> 合同上传</span>
+                            </div>
+                            <%--<form action="" class="form-horizontal">--%>
+                                <hr>
+                                <p style="padding-left: 20px">注意事项</p>
+                                <ul>
+                                    <li>上传合同扫描件要求清晰可见</li>
+                                    <li>合同必须公司法人签字盖章</li>
+                                </ul>
+                                <div class="form-actions">
+                                    <div id="picker">上传合同</div>
+                                </div>
+                            <%--</form>--%>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+
+                            </div>
+
+                            <div class="col-md-3 box-footer">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+
+                            <div class="col-md-3 box-footer">
+                                <button type="submit" class="btn btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                    <%--</form>--%>
                 </div>
-                <!-- /.box-body -->
+                <!-- /.box-body-->
             </div>
             <!-- /.box -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
     <%@ include file="../../include/footer.jsp" %>
 </div>
 <!-- ./wrapper -->
@@ -241,19 +208,20 @@
 <script src="/static/js/bootstrap-datepicker.zh-CN.min.js"></script>
 <script src="/static/js/uploader/webuploader.min.js"></script>
 <script>
-    <!--
     $(function () {
-        $("#datepicker").datepicker();
-    });
-    -->
-    $(function () {
-        $("#datepicker").datepicker({
+        $("#back").datepicker({
             language: "zh-CN",
             autoclose: true,//选中之后自动隐藏日期选择框
             //clearBtn: true,//清除按钮
             //todayBtn: true,//今日按钮
             format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
         });
+
+        $("#addDevice").click(function () {
+            var $html = $(this).parent().parent().parent();
+            $("#add").append($html.clone(true));
+        });
+
         //文件上传
         var uploder = WebUploader.create({
             swf: "js/uploader/Uploader.swf",

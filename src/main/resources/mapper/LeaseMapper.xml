@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kaishengit.mapper.LeaseMapper">
+    <insert id="saveNew" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        t_lease (lease_account, lease_company, lease_address, lease_company_phone, lease_legal, lease_legal_phone, lease_legal_id_card, lease_amount, lease_prepaid, lease_unpaid, lease_of_default)
+       VALUES (#{leaseAccount}, #{leaseCompany}, #{leaseAddress}, #{leaseCompanyPhone}, #{leaseLegal}, #{leaseLegalPhone}, #{leaseLegalIdCard}, #{leaseAmount}, #{leasePrepaid}, #{leaseUnpaid}, #{leaseOfDefault});
+    </insert>
 
     <select id="findAll" resultMap="LeaseMap">
         SELECT
@@ -30,6 +35,10 @@
           LEFT JOIN t_device td ON tld.device_id = td.id
         WHERE tl.id = #{leaseId};
     </select>
+    <select id="findMaxAccount" resultType="java.lang.Integer">
+        SELECT MAX(t_lease.lease_account)
+        FROM t_lease;
+    </select>
 
     <resultMap id="LeaseMap" type="Lease">
         <id column="id" property="id"/>
@@ -53,7 +62,7 @@
         <result column="device_id" property="deviceId"/>
         <result column="lease_id" property="leaseId"/>
         <result column="create_time" property="createTime"/>
-        <result column="return_time" property="returnTime"/>
+        <result column="return_time" property="backTime"/>
         <result column="actual_return_time" property="actualReturnTime"/>
         <result column="is_renewal" property="isRenewal"/>
         <result column="lease_num" property="leaseNum"/>
