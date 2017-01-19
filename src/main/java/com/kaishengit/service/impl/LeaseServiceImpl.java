@@ -51,7 +51,6 @@ public class LeaseServiceImpl implements LeaseService {
     public void saveNewLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums) {
         Integer newAccount = leaseMapper.findMaxAccount() + 1;
         lease.setLeaseAccount(newAccount);
-        Float a = Float.valueOf("4.4");
         leaseMapper.saveNew(lease);
 
         LeaseDevice leaseDevice = new LeaseDevice();

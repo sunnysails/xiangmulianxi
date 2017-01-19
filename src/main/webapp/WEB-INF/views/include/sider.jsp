@@ -13,8 +13,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/user/new"><i class="fa fa-circle-o"></i> 新增账户</a></li>
                     <li><a href="/user"><i class="fa fa-circle-o"></i> 账户列表</a></li>
+                    <li><a href="/user/new"><i class="fa fa-circle-o"></i> 新增账户<i
+                            class="fa fa-angle-left pull-right"></i></a></li>
                 </ul>
             </li>
 
@@ -40,25 +41,30 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> 设备租赁<i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="/business/lease"><i class="fa fa-circle-o"></i> 业务流水</a></li>
-                            <li>
-                                <a href="/business/lease/new"><i class="fa fa-plus"></i> 新增流水 </a>
-                            </li>
+                            <li><a href="/business/lease/new"><i class="fa fa-plus"></i> 新增流水 <i
+                                    class="fa fa-angle-left pull-right"></i></a></li>
                         </ul>
                     </li>
-
                     <li><a href="#"><i class="fa fa-circle-o"></i> 设备管理<i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="/business/device"><i class="fa fa-circle-o"></i> 设备库存</a></li>
-                            <li><a href="/business/device/new"><i class="fa fa-plus"></i> 新增设备 </a></li>
+                            <li><a href="/business/device/new"><i class="fa fa-plus"></i> 新增设备<i
+                                    class="fa fa-angle-left pull-right"></i> </a></li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> 劳务人员 <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="/business/worker"><i class="fa fa-circle-o"></i> 工种清单</a></li>
+                            <li><a href="/business/worker/new"><i class="fa fa-plus"></i> 新增工种 <i class="fa fa-angle-left pull-right"></i></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-circle-o"></i> 劳务外包 <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="#"><i class="fa fa-circle-o"></i> 业务流水</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-plus"></i> 新增流水 <i class="fa fa-angle-left pull-right"></i></a>
+                            <li><a href="#"><i class="fa fa-plus"></i> 新增流水 <i class="fa fa-angle-left pull-right"></i></a>
                             </li>
                         </ul>
                     </li>

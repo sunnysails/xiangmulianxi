@@ -97,6 +97,12 @@
                         <!-- 筛选结束 -->
 
                         <div class="box-body">
+                            <c:if test="${not empty message}">
+                                <div class="alert alert-success">
+                                        ${message}
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                </div>
+                            </c:if>
                             <table class="table table-bordered table-hover table-expandable">
                                 <thead align="center">
                                 <tr>
