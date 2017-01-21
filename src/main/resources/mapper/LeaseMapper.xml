@@ -82,23 +82,4 @@
             <result column="update_time" property="updateTime"/>
         </collection>
     </resultMap>
-
-
-
-    <!--<resultMap id="LeaseMap" type="Lease">-->
-        <!--<id column="id" property="id"/>-->
-        <!--<result column="lease_account" property="leaseAccount"/>-->
-        <!--<result column="lease_company" property="leaseCompany"/>-->
-        <!--<result column="lease_address" property="leaseAddress"/>-->
-        <!--<result column="lease_company_phone" property="leaseCompanyPhone"/>-->
-        <!--<result column="lease_legal" property="leaseLegal"/>-->
-        <!--<result column="lease_legal_phone" property="leaseLegalPhone"/>-->
-        <!--<result column="lease_legal_id_card" property="leaseLegalIdCard"/>-->
-        <!--<result column="lease_amount" property="leaseAmount"/>-->
-        <!--<result column="lease_prepaid" property="leasePrepaid"/>-->
-        <!--<result column="lease_unpaid" property="leaseUnpaid"/>-->
-        <!--<result column="lease_of_default" property="leaseOfDefault"/>-->
-        <!--<result column="lease_state" property="leaseState"/>-->
-        <!--<result column="create_time" property="leaseCreateTime"/>-->
-    <!--</resultMap>-->
 </mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kaishengit.mapper.OutsourceMapper">
+    <insert id="saveNew" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+          t_out (out_account, out_company, out_address, out_company_phone, out_legal, out_legal_phone, out_legal_id_card, out_amount, out_prepaid, out_unpaid, out_of_default)
+        VALUES (#{outAccount}, #{outCompany}, #{outAddress}, #{outCompanyPhone}, #{outLegal}, #{outLegalPhone}, #{outLegalIdCard}, #{outAmount}, #{outPrepaid}, #{outUnpaid}, #{outOfDefault});
+    </insert>
+    <select id="findAll" resultMap="OutMap">
+        SELECT
+          t.*,
+          tlw.*,
+          tw.worker_view_name,
+          tw.worker_all_num,
+          tw.worker_now_num,
+          tw.worker_unit,
+          tw.worker_update_time
+        FROM t_out t LEFT JOIN t_lease_worker tlw ON t.id = tlw.out_id
+          LEFT JOIN t_worker tw ON tlw.worker_id = tw.id;
+    </select>
+    <select id="findMaxAccount" resultType="java.lang.Integer">
+        SELECT MAX(t_out.out_account)
+        FROM t_out;
+    </select>
+
+    <resultMap id="OutMap" type="Outsource">
+        <id column="id" property="id"/>
+        <result column="out_account" property="outAccount"/>
+        <result column="out_company" property="outCompany"/>
+        <result column="out_address" property="outAddress"/>
+        <result column="out_company_phone" property="outCompanyPhone"/>
+        <result column="out_legal" property="outLegal"/>
+        <result column="out_legal_phone" property="outLegalPhone"/>
+        <result column="out_legal_id_card" property="outLegalIdCard"/>
+        <result column="out_amount" property="outAmount"/>
+        <result column="out_prepaid" property="outPrepaid"/>
+        <result column="out_unpaid" property="outUnpaid"/>
+        <result column="out_of_default" property="outOfDefault"/>
+        <result column="out_state" property="outState"/>
+        <result column="out_create_time" property="outCreateTime"/>
+        <collection property="leaseWorkerList" resultMap="leaseWorkerMap"/>
+    </resultMap>
+
+    <resultMap id="leaseWorkerMap" type="LeaseWorker">
+        <result column="out_id" property="outId"/>
+        <result column="worker_id" property="workerId"/>
+        <result column="worker_create_time" property="workerCreateTime"/>
+        <result column="worker_return_time" property="workerReturnTime"/>
+        <result column="out_num" property="outNum"/>
+        <result column="worker_create_price" property="workerCreatePrice"/>
+        <collection property="worker" ofType="Worker">
+            <id column="worker_id" property="id"/>
+            <result column="worker_view_name" property="workerViewName"/>
+            <result column="worker_all_num" property="workerAllNum"/>
+            <result column="worker_unit" property="workerUnit"/>
+            <result column="worker_update_time" property="workerUpdateTime"/>
+        </collection>
+    </resultMap>
+</mapper>

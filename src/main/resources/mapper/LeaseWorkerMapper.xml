@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kaishengit.mapper.LeaseWorkerMapper">
+    <insert id="saveNew">
+        INSERT INTO
+          t_lease_worker (worker_id, out_num, worker_create_price, out_id)
+        VALUES (#{workerId}, #{outNum}, #{workerCreatePrice}, #{outId
+        });
+    </insert>
+</mapper>

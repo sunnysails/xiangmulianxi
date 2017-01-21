@@ -4,6 +4,8 @@ import com.kaishengit.pojo.Device;
 import com.kaishengit.pojo.Lease;
 import com.kaishengit.service.DeviceService;
 import com.kaishengit.service.LeaseService;
+import com.kaishengit.util.DateUtil;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -45,7 +47,14 @@ public class LeaseController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String newLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums, RedirectAttributes redirectAttributes) {
+    public String newLease(Lease lease, Integer[] deviceIds, String[] backs, Integer[] leaseNums, RedirectAttributes redirectAttributes) {
+//        for (String b :
+//             backs) {
+//            System.out.println(b);
+//            Timestamp t = Timestamp.valueOf(DateUtil.getWantDate(b,DateUtil.PATTERN_STANDARD19H));
+//            System.out.println(t);
+//            System.out.println("......................");
+//        }
         leaseService.saveNewLease(lease, deviceIds, backs, leaseNums);
         redirectAttributes.addFlashAttribute("message", "添加新租赁关系");
         return "redirect:/business/lease";

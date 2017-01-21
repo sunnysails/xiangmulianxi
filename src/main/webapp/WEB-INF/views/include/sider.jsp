@@ -63,8 +63,8 @@
                     <li>
                         <a href="#"><i class="fa fa-circle-o"></i> 劳务外包 <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> 业务流水</a></li>
-                            <li><a href="#"><i class="fa fa-plus"></i> 新增流水 <i class="fa fa-angle-left pull-right"></i></a>
+                            <li><a href="/business/outsource"><i class="fa fa-circle-o"></i> 业务流水</a></li>
+                            <li><a href="/business/outsource/new"><i class="fa fa-plus"></i> 新增流水 <i class="fa fa-angle-left pull-right"></i></a>
                             </li>
                         </ul>
                     </li>

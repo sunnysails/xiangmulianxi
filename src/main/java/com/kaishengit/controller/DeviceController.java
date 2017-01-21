@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/business/device")
-public class BusinessDeviceController {
+public class DeviceController {
 
     @Autowired
     private DeviceService deviceService;

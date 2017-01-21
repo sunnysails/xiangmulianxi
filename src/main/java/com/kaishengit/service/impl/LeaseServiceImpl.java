@@ -7,7 +7,9 @@ import com.kaishengit.pojo.Device;
 import com.kaishengit.pojo.Lease;
 import com.kaishengit.pojo.LeaseDevice;
 import com.kaishengit.service.LeaseService;
+import com.kaishengit.util.DateUtil;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +50,7 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Override
     @Transactional
-    public void saveNewLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums) {
+    public void saveNewLease(Lease lease, Integer[] deviceIds, String[] backs, Integer[] leaseNums) {
         Integer newAccount = leaseMapper.findMaxAccount() + 1;
         lease.setLeaseAccount(newAccount);
         leaseMapper.saveNew(lease);
@@ -62,11 +64,11 @@ public class LeaseServiceImpl implements LeaseService {
             device = deviceMapper.findById(deviceIds[i]);
             //存储leaseDevice对象
             leaseDevice.setDeviceId(deviceIds[i]);
-            leaseDevice.setBackTime(backs[i]);
+            leaseDevice.setBackTime(Timestamp.valueOf(DateUtil.getWantDate(backs[i],DateUtil.PATTERN_STANDARD19H)));
 //TODO 因spring获取时间问题，该功能暂有BUG存在。不能实用 ，后期修复！！！！
-//            leaseDevice.setBackTime(new Timestamp(new DateTime().getMillis()));
             leaseDevice.setLeaseNum(leaseNums[i]);
             leaseDevice.setCreatePrice(device.getDeviceUnitPrice());
+//            int days = Days.daysBetween(DateUtil.getWantDate(getNowDay().toString(),DateUtil.PATTERN_STANDARD10H), DateUtil.string2Date(backs[i],DateUtil.PATTERN_STANDARD10H)).getDays();
 //            leaseDevice.setAmount(device.getDeviceUnitPrice()*leaseNums[i]*(backs[i]-getNowDay()));
             leaseDeviceMapper.saveNewLeDe(leaseDevice);
 //更新device 数量

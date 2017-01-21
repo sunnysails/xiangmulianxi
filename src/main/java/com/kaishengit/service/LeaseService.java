@@ -14,5 +14,5 @@ public interface LeaseService {
 
     Lease findLeaseById(Integer leaseId);
 
-    void saveNewLease(Lease lease, Integer[] deviceIds, Timestamp[] backs, Integer[] leaseNums);
+    void saveNewLease(Lease lease, Integer[] deviceIds, String[] backs, Integer[] leaseNums);
 }

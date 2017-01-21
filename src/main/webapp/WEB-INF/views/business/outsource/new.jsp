@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: sunny
-  Date: 2017/1/18
-  Time: 14:08
+  Date: 2017/1/21
+  Time: 18:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -57,32 +57,32 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>租赁公司：&nbsp;</label>
-                                    <input type="text" name="leaseCompany" id="lease_company">
+                                    <input type="text" name="outCompany" id="out_company">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>地 &nbsp;&nbsp;址：&nbsp;</label>
-                                    <input type="text" name="leaseAddress" id="lease_address">
+                                    <input type="text" name="outAddress" id="out_address">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>公司电话：&nbsp;</label>
-                                    <input type="text" name="leaseCompanyPhone" id="lease_company_phone">
+                                    <input type="text" name="outCompanyPhone" id="out_company_phone">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>法人代表：&nbsp;</label>
-                                    <input type="text" name="leaseLegal" id="lease_legal">
+                                    <input type="text" name="outLegal" id="out_legal">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>电 &nbsp;&nbsp;话：&nbsp;</label>
-                                    <input type="text" name="leaseLegalPhone" id="lease_legal_phone">
+                                    <input type="text" name="outLegalPhone" id="out_legal_phone">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>身份证号：&nbsp;</label>
-                                    <input type="text" name="leaseLegalIdCard" id="lease_legal_id_card">
+                                    <input type="text" name="outLegalIdCard" id="out_legal_id_card">
                                 </div>
                             </div>
                             <!--金额 -->
@@ -90,19 +90,19 @@
 
                                 <div class="form-group col-md-4">
                                     <label>租金金额：</label>
-                                    <input type="text" disabled="disabled" name="leaseAmount" id="lease_amount"
+                                    <input type="text" disabled="disabled" name="outAmount" id="out_amount"
                                            value="10000.00">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>预付款：&nbsp;</label>
-                                    <input type="text" disabled="disabled" name="leasePrepaid" id="lease_prepaid"
+                                    <input type="text" disabled="disabled" name="outPrepaid" id="out_prepaid"
                                            placeholder="" value="2000.00">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>尾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;款：&nbsp;</label>
-                                    <input type="text" disabled="disabled" name="leaseUnpaid"
-                                           id="lease_unpaid" value="8000.00">
+                                    <input type="text" disabled="disabled" name="outUnpaid"
+                                           id="out_unpaid" value="8000.00">
                                 </div>
                             </div>
                         </div>
@@ -112,47 +112,47 @@
                         <div id="add">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">新租赁设备</h3>
+                                    <h3 class="box-title">外包工种</h3>
                                     <div class="box-tools pull-right">
-                                        <a href="javascript:;" id="addDevice" class="btn"><i class="fa fa-plus"></i></a>
+                                        <a href="javascript:;" id="removeDiv" class="btn"><span>删除新增&nbsp;</span><i class="fa fa-plus"></i></a>
+                                        <a href="javascript:;" id="addDiv" class="btn"><span>添加新工种&nbsp;</span><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label>设备名称：&nbsp;</label>
-                                        <select name="deviceIds" style="height:29px;width:174px">
-                                            <c:forEach items="${deviceList}" var="device">
-                                                <option value="${device.id}">${device.deviceName}</option>
+                                        <label>工种名称：&nbsp;</label>
+                                        <select name="workerIds" style="height:29px;width:174px">
+                                            <c:forEach items="${workerList}" var="worker">
+                                                <option value="${worker.id}">${worker.workerViewName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label>单 &nbsp;&nbsp;位：&nbsp;</label>
-                                        <input type="text" name="deviceUnit">
+                                        <input type="text" name="workerUnit">
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label>租赁单价：&nbsp;</label>
-                                        <input type="text" disabled="disabled" name="deviceUnitPrice" value="10.00">
+                                        <label>外包单价：&nbsp;</label>
+                                        <input type="text" disabled="disabled" name="workerUnitPrice" value="10.00">
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label>归还时间：&nbsp;</label>
-                                        <input id="back" type="text" name="backs">
+                                        <label>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;</label>
+                                        <input type="text" name="workerNums">
                                     </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label>数&nbsp;&nbsp;量：&nbsp;</label>
-                                        <input type="text" name="leaseNums">
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label>天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：&nbsp;</label>
-                                        <input type="text" disabled="disabled" placeholder="根据归还时间自动生成">
-                                    </div>
+                                    <%--<div class="form-group col-md-4">--%>
+                                    <%--<label>归还时间：&nbsp;</label>--%>
+                                    <%--<input id="back" type="text" name="backs">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group col-md-4">--%>
+                                    <%--<label>天&nbsp;&nbsp;&nbsp;数：&nbsp;</label>--%>
+                                    <%--<input type="text" disabled="disabled" placeholder="根据归还时间自动生成">--%>
+                                    <%--</div>--%>
                                 </div>
                             </div>
                         </div>
@@ -165,15 +165,15 @@
                                 <span class="title"><i class="fa fa-user"></i> 合同上传</span>
                             </div>
                             <%--<form action="" class="form-horizontal">--%>
-                                <hr>
-                                <p style="padding-left: 20px">注意事项</p>
-                                <ul>
-                                    <li>上传合同扫描件要求清晰可见</li>
-                                    <li>合同必须公司法人签字盖章</li>
-                                </ul>
-                                <div class="form-actions">
-                                    <div id="picker">上传合同</div>
-                                </div>
+                            <hr>
+                            <p style="padding-left: 20px">注意事项</p>
+                            <ul>
+                                <li>上传合同扫描件要求清晰可见</li>
+                                <li>合同必须公司法人签字盖章</li>
+                            </ul>
+                            <div class="form-actions">
+                                <div id="picker">上传合同</div>
+                            </div>
                             <%--</form>--%>
                         </div>
                         <div class="row">
@@ -217,9 +217,14 @@
             format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
         });
 
-        $("#addDevice").click(function () {
+        $("#addDiv").click(function () {
             var $html = $(this).parent().parent().parent();
             $("#add").append($html.clone(true));
+            $(this).remove();
+        });
+
+        $("#removeDiv").click(function () {
+           $(this).parent().parent().parent().remove();
         });
 
         //文件上传
