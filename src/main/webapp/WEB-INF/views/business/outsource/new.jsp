@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>设备租赁新增</title>
+    <title>外包流水新增</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <%@include file="../../include/css.jsp" %>
@@ -114,7 +114,6 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">外包工种</h3>
                                     <div class="box-tools pull-right">
-                                        <a href="javascript:;" id="removeDiv" class="btn"><span>删除新增&nbsp;</span><i class="fa fa-plus"></i></a>
                                         <a href="javascript:;" id="addDiv" class="btn"><span>添加新工种&nbsp;</span><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
@@ -222,11 +221,6 @@
             $("#add").append($html.clone(true));
             $(this).remove();
         });
-
-        $("#removeDiv").click(function () {
-           $(this).parent().parent().parent().remove();
-        });
-
         //文件上传
         var uploder = WebUploader.create({
             swf: "js/uploader/Uploader.swf",

@@ -71,7 +71,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="/skydrive">
                     <i class="fa fa-folder"></i>
                     <span>公司网盘</span>
                 </a>

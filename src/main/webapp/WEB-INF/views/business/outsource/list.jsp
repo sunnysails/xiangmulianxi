@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>设备租赁查询</title>
+    <title>外包流水查询</title>
     <!-- Tell tde browser to be responsive to screen widtd -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <%@ include file="../../include/css.jsp" %>

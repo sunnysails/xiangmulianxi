@@ -97,16 +97,16 @@ ol,ul{margin-bottom:0px; }
 }
 
 .newFile{
-	
+
     top: 0px;
     left: 0px;
     width: 86px;
-    height: 45px;
+    height: 40px;
     overflow: hidden;
     bottom: auto;
     right: auto;
 	margin:0px 10px;
 	border:0px;
 	text-align:center;
-	background-color:#00B7EE
+	background-color: #00b0ee
 }

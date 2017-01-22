@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>设备新增</title>
     <%@include file="../../include/css.jsp" %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
