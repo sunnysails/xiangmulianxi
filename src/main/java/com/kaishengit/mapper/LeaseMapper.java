@@ -17,4 +17,6 @@ public interface LeaseMapper {
     void saveNew(Lease lease);
 
     int findMaxAccount();
+
+    void update(Lease lease);
 }

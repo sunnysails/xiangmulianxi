@@ -13,8 +13,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>工种管理</title>
-    <!-- Tell tde browser to be responsive to screen widtd -->
-    <meta content="widtd=device-widtd, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Tell tde browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <%@ include file="../../include/css.jsp" %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -78,8 +78,8 @@
                                         <td>${worker.workerNowNum}</td>
                                         <td>${worker.workerUnit}</td>
                                         <td>${worker.workerUnitPrice}</td>
-                                        <td>${worker.workerCreateTime}</td>
-                                        <td>${worker.workerUpdateTime}</td>
+                                        <td class="time">${worker.workerCreateTime}</td>
+                                        <td class="time">${worker.workerUpdateTime}</td>
                                         <td>
                                             <a href="/business/worker/${worker.id}/edit">编辑</a>
                                             <a href="/business/worker/${worker.id}/del">删除</a>
@@ -113,5 +113,6 @@
 </div>
 <!-- ./wrapper -->
 <%@include file="../../include/js.jsp" %>
+<%@ include file="../../include/moment.jsp" %>
 </body>
 </html>

@@ -11,4 +11,6 @@ public interface SkyDriveService {
     List<SkyDrive> findAllSkyDriveByRelationId(Integer relationId);
 
     Boolean saveNewDic(String newDic, Integer relationId);
+
+    SkyDrive findSkyDriveById(Integer id);
 }

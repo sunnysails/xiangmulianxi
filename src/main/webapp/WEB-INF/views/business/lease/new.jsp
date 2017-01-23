@@ -90,19 +90,17 @@
 
                                 <div class="form-group col-md-4">
                                     <label>租金金额：</label>
-                                    <input type="text" disabled="disabled" name="leaseAmount" id="lease_amount"
-                                           value="10000.00">
+                                    <input type="text" disabled="disabled" name="leaseAmount" id="amount">
                                 </div>
+
                                 <div class="form-group col-md-4">
                                     <label>预付款：&nbsp;</label>
-                                    <input type="text" disabled="disabled" name="leasePrepaid" id="lease_prepaid"
-                                           placeholder="" value="2000.00">
+                                    <input type="text" disabled="disabled" name="leasePrepaid" id="prepaid">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>尾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;款：&nbsp;</label>
-                                    <input type="text" disabled="disabled" name="leaseUnpaid"
-                                           id="lease_unpaid" value="8000.00">
+                                    <input type="text" disabled="disabled" name="leaseUnpaid" id="unpaid">
                                 </div>
                             </div>
                         </div>
@@ -121,27 +119,29 @@
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label>设备名称：&nbsp;</label>
-                                        <select name="deviceIds" style="height:29px;width:174px">
+                                        <select class="deviceId" name="deviceIds" style="height:29px;width:174px">
                                             <c:forEach items="${deviceList}" var="device">
-                                                <option value="${device.id}">${device.deviceName}</option>
+                                                <option value="${device.id}"
+                                                        rel="${device.id}">${device.deviceName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label>单 &nbsp;&nbsp;位：&nbsp;</label>
-                                        <input type="text" name="deviceUnit">
+                                        <input class="Unit" type="text" name="deviceUnit">
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label>租赁单价：&nbsp;</label>
-                                        <input type="text" disabled="disabled" name="deviceUnitPrice" value="10.00">
+                                        <input class="UnitPrice" type="text" disabled="disabled"
+                                               name="deviceUnitPrice">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label>归还时间：&nbsp;</label>
-                                        <input id="back" type="text" name="backs">
+                                        <input class="backtime" id="back" type="text" name="backs">
                                     </div>
 
                                     <div class="form-group col-md-4">
@@ -151,7 +151,8 @@
 
                                     <div class="form-group col-md-4">
                                         <label>天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：&nbsp;</label>
-                                        <input type="text" disabled="disabled" placeholder="根据归还时间自动生成">
+                                        <input class="disabled" type="text" disabled="disabled" name="leaseNum"
+                                               placeholder="根据归还时间自动生成">
                                     </div>
                                 </div>
                             </div>
@@ -165,15 +166,15 @@
                                 <span class="title"><i class="fa fa-user"></i> 合同上传</span>
                             </div>
                             <%--<form action="" class="form-horizontal">--%>
-                                <hr>
-                                <p style="padding-left: 20px">注意事项</p>
-                                <ul>
-                                    <li>上传合同扫描件要求清晰可见</li>
-                                    <li>合同必须公司法人签字盖章</li>
-                                </ul>
-                                <div class="form-actions">
-                                    <div id="picker">上传合同</div>
-                                </div>
+                            <hr>
+                            <p style="padding-left: 20px">注意事项</p>
+                            <ul>
+                                <li>上传合同扫描件要求清晰可见</li>
+                                <li>合同必须公司法人签字盖章</li>
+                            </ul>
+                            <div class="form-actions">
+                                <div id="picker">上传合同</div>
+                            </div>
                             <%--</form>--%>
                         </div>
                         <div class="row">
@@ -203,6 +204,7 @@
 </div>
 <!-- ./wrapper -->
 <%@ include file="../../include/js.jsp" %>
+<%@ include file="../../include/moment.jsp" %>
 <!-- datepicker -->
 <script src="/static/js/bootstrap-datepicker.min.js"></script>
 <script src="/static/js/bootstrap-datepicker.zh-CN.min.js"></script>
@@ -221,6 +223,43 @@
             var $html = $(this).parent().parent().parent();
             $("#add").append($html.clone(true));
         });
+
+        $(".deviceId").mouseleave(function () {
+            var deviceId = $(this).val();
+            <c:forEach items="${deviceList}" var="device">
+            if (${device.id} == deviceId
+            )
+            {
+                $(this).parent().parent().parent().find(".Unit").val("${device.deviceUnit}");
+                $(this).parent().parent().parent().find(".UnitPrice").val("${device.deviceUnitPrice}");
+            }
+            </c:forEach>
+        });
+        $(".backtime").mouseleave(function () {
+            var day = $(this).val();
+            var now = moment().format("YYYY-MM-DD");
+            var a = DateDiff(day, now);
+            if (a > 0){
+                $(".disabled").val(a);
+            }else {
+                $(".disabled").val("日期错误");
+                a=0;
+            };
+            $(".backtime").val(day);
+
+            var b = $(".UnitPrice").valueOf();
+            console.log(b);
+        });
+
+        function DateDiff(sDate1, sDate2) {    //sDate1和sDate2是2006-12-18格式
+            var aDate, oDate1, oDate2, iDays
+            aDate = sDate1.split("-")
+            oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])    //转换为12-18-2006格式
+            aDate = sDate2.split("-")
+            oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])
+            iDays = parseInt((oDate1 - oDate2) / 1000 / 60 / 60 / 24)    //把相差的毫秒数转换为天数
+            return iDays
+        }
 
         //文件上传
         var uploder = WebUploader.create({

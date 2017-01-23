@@ -13,8 +13,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>设备管理</title>
-    <!-- Tell tde browser to be responsive to screen widtd -->
-    <meta content="widtd=device-widtd, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Tell tde browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <%@ include file="../../include/css.jsp" %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -80,8 +80,8 @@
                                         <td>${device.deviceNowNum}</td>
                                         <td>${device.deviceUnit}</td>
                                         <td>${device.deviceUnitPrice}</td>
-                                        <td>${device.createTime}</td>
-                                        <td>${device.updateTime}</td>
+                                        <td class="time">${device.createTime}</td>
+                                        <td class="time">${device.updateTime}</td>
                                         <td>
                                             <a href="/business/device/${device.id}/edit">编辑</a>
                                             <a href="/business/device/${device.id}/del">删除</a>
@@ -115,6 +115,7 @@
 </div>
 <!-- ./wrapper -->
 <%@include file="../../include/js.jsp" %>
+<%@include file="../../include/moment.jsp"%>
 </body>
 </html>
 

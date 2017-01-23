@@ -35,10 +35,11 @@ public class SkyDriveController {
 
     @RequestMapping(value = "/{relationId:\\d+}", method = RequestMethod.GET)
     public String skyDriveList(@PathVariable Integer relationId, Model model) {
-        List<SkyDrive> skyDriveList = skyDriveService.findAllSkyDriveByRelationId(relationId);
-        if (skyDriveList.size() == 0) {
+        SkyDrive skyDrive = skyDriveService.findSkyDriveById(relationId);
+        if (skyDrive == null) {
             return "redirect:/skydrive";
         }
+        List<SkyDrive> skyDriveList = skyDriveService.findAllSkyDriveByRelationId(relationId);
         model.addAttribute("skyDriveList", skyDriveList);
         return "/skydrive/list";
     }

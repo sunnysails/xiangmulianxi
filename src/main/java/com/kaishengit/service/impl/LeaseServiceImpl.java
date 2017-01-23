@@ -59,21 +59,31 @@ public class LeaseServiceImpl implements LeaseService {
         Device device = new Device();
 
         leaseDevice.setLeaseId(lease.getId());
+        Float a = Float.valueOf(0);
         for (int i = 0; i < deviceIds.length; i++) {
             //获取device对象
             device = deviceMapper.findById(deviceIds[i]);
             //存储leaseDevice对象
             leaseDevice.setDeviceId(deviceIds[i]);
-            leaseDevice.setBackTime(Timestamp.valueOf(DateUtil.getWantDate(backs[i],DateUtil.PATTERN_STANDARD19H)));
-//TODO 因spring获取时间问题，该功能暂有BUG存在。不能实用 ，后期修复！！！！
+            leaseDevice.setBackTime(Timestamp.valueOf(DateUtil.getWantDate(backs[i], DateUtil.PATTERN_STANDARD19H)));
             leaseDevice.setLeaseNum(leaseNums[i]);
             leaseDevice.setCreatePrice(device.getDeviceUnitPrice());
-//            int days = Days.daysBetween(DateUtil.getWantDate(getNowDay().toString(),DateUtil.PATTERN_STANDARD10H), DateUtil.string2Date(backs[i],DateUtil.PATTERN_STANDARD10H)).getDays();
-//            leaseDevice.setAmount(device.getDeviceUnitPrice()*leaseNums[i]*(backs[i]-getNowDay()));
-            leaseDeviceMapper.saveNewLeDe(leaseDevice);
-//更新device 数量
+
+            Integer day = DateUtil.getDiff(DateUtil.getCurrentTime(DateUtil.PATTERN_STANDARD10H), backs[i]);
+            if (day >= 0) {
+                Float amount = device.getDeviceUnitPrice() * leaseNums[i] * day;
+                leaseDeviceMapper.saveNewLeDe(leaseDevice);
+                a = a + amount;
+            } else {
+                throw new RuntimeException("时间错误");
+            }
+            //更新device 数量
             device.setDeviceNowNum(device.getDeviceNowNum() - leaseNums[i]);
             deviceMapper.update(device);
         }
+        lease.setLeaseAmount(a);
+        lease.setLeasePrepaid(a * 20 / 100);
+        lease.setLeaseUnpaid(a * 80 / 100);
+        leaseMapper.update(lease);
     }
 }

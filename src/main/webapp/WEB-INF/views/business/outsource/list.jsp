@@ -130,7 +130,7 @@
                                         <td>${out.outLegalIdCard}</td>
                                         <td>${out.outAmount}</td>
                                         <td>${out.outState == 1 ? "完成":"租用中"}</td>
-                                        <td>${out.outCreateTime}</td>
+                                        <td class="time">${out.outCreateTime}</td>
                                         <td><a href="#">下载</a></td>
                                             <%--<td><a href="/business/lease/${lease.id}/detail">详情</a></td>--%>
                                     </tr>
@@ -147,7 +147,7 @@
                                                         <!-- /.box-header -->
                                                         <div class="box-body" style="font-size: medium">
                                                             <ul>
-                                                                <li><span>租赁起始时间：</span>${leaseWorker.workerCreateTime}</li>
+                                                                <li><span>租赁起始时间：</span><span class="time">${leaseWorker.workerCreateTime}</span></li>
                                                                 <li><span>租赁单位数量（${leaseWorker.worker.workerUnit}）：</span>${leaseWorker.outNum}</li>
                                                                 <li><span>租赁确定单价（元）：</span>${leaseWorker.workerCreatePrice}</li>
                                                             </ul>
@@ -187,6 +187,7 @@
 </div>
 <!-- ./wrapper -->
 <%@ include file="../../include/js.jsp" %>
+<%@ include file="../../include/moment.jsp" %>
 <script src="/static/js/bootstrap-table-expandable.js"></script>
 </body>
 </html>

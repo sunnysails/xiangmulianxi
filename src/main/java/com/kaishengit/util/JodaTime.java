@@ -28,7 +28,7 @@ public class JodaTime {
         String str5 = dateTime.toString("MM/dd/yyyy HH:mm ZZZZ");
         String str6 = dateTime.toString("MM/dd/yyyy HH:mm Z");
 
-        DateTimeFormatter format = DateTimeFormat .forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         //时间解析
         DateTime dateTime2 = DateTime.parse("2012-12-21 23:22:45", format);
 

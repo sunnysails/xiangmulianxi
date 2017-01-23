@@ -44,4 +44,9 @@ public class SkyDriveServiceImpl implements SkyDriveService {
         }
         return false;
     }
+
+    @Override
+    public SkyDrive findSkyDriveById(Integer id) {
+        return skyDriveMapper.findById(id);
+    }
 }

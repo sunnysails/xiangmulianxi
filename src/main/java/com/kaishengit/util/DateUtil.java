@@ -212,4 +212,11 @@ public class DateUtil {
         }
         return returnStr;
     }
+
+    public static Integer getDiff(String starDay, String endDay) {
+        Date s = string2Date(starDay, PATTERN_STANDARD10H);
+        Date e = string2Date(endDay, PATTERN_STANDARD10H);
+        Integer day = Math.toIntExact((e.getTime() - s.getTime()) / (1000 * 60 * 60 * 24));
+        return day;
+    }
 }

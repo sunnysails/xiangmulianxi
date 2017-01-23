@@ -100,7 +100,8 @@
                             <c:if test="${not empty message}">
                                 <div class="alert alert-success">
                                         ${message}
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                                    </button>
                                 </div>
                             </c:if>
                             <table class="table table-bordered table-hover table-expandable">
@@ -132,7 +133,7 @@
                                         <td>${lease.leaseAmount}</td>
                                         <td>${lease.leaseOfDefault}</td>
                                         <td>${lease.leaseState == 1 ? "完成":"租用中"}</td>
-                                        <td>${lease.leaseCreateTime}</td>
+                                        <td class="time">${lease.leaseCreateTime}</td>
                                         <td><a href="#">下载</a></td>
                                             <%--<td><a href="/business/lease/${lease.id}/detail">详情</a></td>--%>
                                     </tr>
@@ -149,14 +150,29 @@
                                                         <!-- /.box-header -->
                                                         <div class="box-body" style="font-size: medium">
                                                             <ul>
-                                                                <li><span>租赁起始时间：</span>${leaseDevice.createTime}</li>
-                                                                <li><span>租赁结束时间：</span>${leaseDevice.backTime}</li>
-                                                                <li><span>租赁单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.leaseNum}</li>
-                                                                <li><span>归还单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.returnNum}</li>
-                                                                <li><span>租赁确定单价（元）：</span>${leaseDevice.createPrice}</li>
+                                                                <li><span>租赁起始时间：</span>
+                                                                    <sapn class="time">${leaseDevice.createTime}</sapn>
+                                                                </li>
+                                                                <li><span>租赁结束时间：</span>
+                                                                    <sapn
+                                                                            <c:if test="${leaseDevice.backTime==null?'':'class=\"time\"'}"></c:if>>
+                                                                            ${leaseDevice.backTime}
+                                                                    </sapn>
+                                                                </li>
+                                                                <li>
+                                                                    <span>租赁单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.leaseNum}
+                                                                </li>
+                                                                <li>
+                                                                    <span>归还单位数量（${leaseDevice.device.deviceUnit}）：</span>${leaseDevice.returnNum}
+                                                                </li>
+                                                                <li><span>租赁确定单价（元）：</span>${leaseDevice.createPrice}
+                                                                </li>
                                                                 <li><span>租赁佣金总数（元）：</span>${leaseDevice.amount}</li>
-                                                                <li><span>租赁违约金额（元）：</span>${leaseDevice.amountOfDefault}</li>
-                                                                <li><span>租赁已付款额（元）：</span>${leaseDevice.paidAmount}</li>
+                                                                <li>
+                                                                    <span>租赁违约金额（元）：</span>${leaseDevice.amountOfDefault}
+                                                                </li>
+                                                                <li><span>租赁已付款额（元）：</span>${leaseDevice.paidAmount}
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <!-- /.box-body -->
@@ -194,6 +210,7 @@
 </div>
 <!-- ./wrapper -->
 <%@ include file="../../include/js.jsp" %>
+<%@ include file="../../include/moment.jsp" %>
 <script src="/static/js/bootstrap-table-expandable.js"></script>
 </body>
 </html>
